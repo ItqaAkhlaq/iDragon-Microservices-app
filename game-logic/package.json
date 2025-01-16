@@ -1,0 +1,16 @@
+{
+  "name": "game-logic",
+  "version": "1.0.0",
+  "description": "Game logic microservice for the Dragon Game",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
