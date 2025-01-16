@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iDragon - JavaScript Game</title>
+    <link rel="stylesheet" href="output.css">
+    <script src="app.js"></script>
+    <style>
+        /* for large screen */
+        @media (min-width: 601px) { 
+            .animateDino{
+                animation: dino 0.8s linear;
+            }
+        }
+        /* for small screen */
+        @media (max-width: 600px) {
+            .animateDino{
+                animation: dino 0.8s linear;
+            }
+        }
+        @keyframes dino{
+            0%{ bottom: 0; }
+            50%{ bottom: 320px; }
+            100%{ bottom: 0; }
+        }
+
+        /* for large screen */
+        @media (min-width: 601px) {
+            .obsAni{
+                animation: obsAni 3s linear infinite;
+            }
+        }
+        /* for small screen */
+        @media (max-width: 600px) {
+            .obsAni{
+                animation: obsAni 1.3s linear infinite;
+            }
+        }
+        @keyframes obsAni{
+            0%{ left: 100vw; }
+            100%{ left: -10vw; }
+        }
+
+        .GameOver{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="gamecontainer" class="h-screen overflow-hidden relative bg-cover bg-no-repeat lg:bg-center font-['poppins']" style="background-image: url('bg.png');">
+        <div class="text-center text-cyan-100 font-bold text-2xl lg:text-4xl">Welcome To " iDragon Adventures "</div>
+        <div id="gameover" class="GameOver relative text-center top-[120px] text-[#0D5C20] text-4xl font-semibold"><span class="p-3 border-none rounded-xl shadow-xl shadow-sky-100 bg-sky-100">Game Over! :(</span></div>
+        <div id="Dino" style="background-image: url('dino.png');" class="bg-no-repeat bg-cover p-2 w-[120px] h-[60px] lg:w-[230px] lg:h-[114px] absolute bottom-0 left-4 lg:left-16"></div>
+        <div id="scoreCont" class="relative text-center top-[30px] text-[#0D5C20] text-3xl font-semibold "><span class="p-3 border-none rounded-xl">Your Score: 0</span></div>
+        <div id="obstacle" style="background-image: url('dragon.png');" class="w-[70px] h-[50px] p-2 lg:w-[90px] lg:h-[60px] obsAni bg-cover absolute bottom-0 left-[64vw]"></div>
+    </div>
+    
+    <script>
+        document.getElementById('startGame').addEventListener('click', async () => {
+          const response = await fetch('http://localhost:3001/api/game-start');
+          const data = await response.json();
+          document.getElementById('gameStatus').innerText = data.message;
+        });
+      </script>
+</body>
+</html>
